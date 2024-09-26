@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/assets/css/style.css}">
+<body>
+    <div th:replace="~{fragments/headers :: header}"></div>
+    <div class="" style="margin: 0">
+        <div style="padding-block: 20px; color: white; padding-inline: 200px; height: 400px;
+            background-image: linear-gradient(to right, #00009d, #b242fc);
+">
+            <div style="height:100%; display: flex; flex-direction: column; justify-content: space-around;">
+            <div>
+            <h1 style="font-size: xxx-large">Welcome to H-manage+</h1>
+            <p>This web app allows you to manage <br> all your hostel needs.</p>
+            </div>
+
+            <a sec:authorize="isAuthenticated()" id="getStarted" style="text-decoration: none; color: white;" href="/chats">
+                Get started </a>
+                <a sec:authorize="!isAuthenticated()" id="getStarted" style="text-decoration: none; color: white;" href="/chats">
+                    Get started </a>
+            </div>
+        </div>
+        <div style="padding-block: 20px;padding-inline: 200px;">
+            <h1 style="font-size: xxx-large">Features. Loaded!</h1>
+            <div class="features">
+                <div class="feat">
+                    <div>Chatting Groups</div>
+                    <div>Inventory</div>
+                    <div>Dues</div>
+                    <div>Complaints</div>
+                    <div>Services</div>
+                </div>
+                <div class="featDesc" style="text-align: right; width: 40%">
+                    Allows you to chat with your friends and discuss about related issues in your hostel. Create group and chat.
+                </div>
+            </div>
+            <script type="application/javascript">
+                let features = document.getElementsByClassName("feat")[0].children;
+                let featMap = {
+                    'Chatting Groups': 'Allows you to chat with your friends and discuss about related issues in your hostel. Create group and chat. ',
+                    'Inventory': 'Keep track of all the inventory in your hostel.',
+                    'Dues': 'Get record of all dues imposed.',
+                    'Complaints': 'Now you can complaint the issues related to hostel and get them resolved by the admin',
+                    'Services': 'Keep track of all the Multi tasking Services in the hostel'
+                }
+                let desc = document.getElementsByClassName("featDesc")[0];
+                for(let i = 0;i<features.length;i++) {
+                    console.log("sdfsdf");
+                    let feature = features[i].innerHTML.toString();
+                    features[i].addEventListener('mouseover', ()=>{
+                       desc.innerHTML = featMap[feature];
+                    });
+                }
+            </script>
+        </div>
+    </div>
+
+<!--    -->
+    <div style="height: 300px"></div>
+<!--    footer-->
+    <div class="footer">
+        <div>
+            <div style="font-weight: bolder; font-size: large">H-manage+</div>
+            <div style="font-size: 12px; padding-top: 10px">
+                A Complete Hostel Management App <br>
+                Project Made for CSO-361 DBMS Course
+            </div>
+        </div>
+        <div>
+            <div style="text-align: right; ">Contributors</div>
+            <div style="font-size: 12px; text-align: right">
+            Sangam Kumar <br>
+            Kuldeep Rai <br>
+            Soumyadeep Das <br>
+            
+            </div>
+        </div>
+    </div>
+</body>
+</html>

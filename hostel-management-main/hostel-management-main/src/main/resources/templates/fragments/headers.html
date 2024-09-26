@@ -1,0 +1,47 @@
+<div th:fragment="header" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <div class="header">
+        <a href="/" style="font-weight: bolder; font-size: x-large">H-manage+</a>
+        <div class="menu">
+            <a sec:authorize="isAuthenticated()" href="/">Home</a>
+            <a sec:authorize="isAuthenticated()" th:if="${role=='WARDEN' or role=='STUDENT'}" href="/complaints/unresolved">Complaints</a>
+            <a sec:authorize="isAuthenticated()" th:if="${role=='WARDEN'}" href="/inventory">Inventory</a>
+            <a sec:authorize="isAuthenticated()" th:if="${role=='WARDEN' or role=='STAFF'}" href="/services">Services</a>
+            <a sec:authorize="isAuthenticated()" href="/chats">Chat</a>
+            <a sec:authorize="isAuthenticated()" href="/dues">Dues</a>
+        </div>
+        <div>
+            <div sec:authorize="isAuthenticated()" style="display: flex; flex-direction: row; gap: 12px">
+                <a href="/profile"><div th:text="${#authentication.principal.username}"> </div></a>
+                <form action="/logout" method="post">
+                    <button type="submit" style="cursor: pointer; font-size: medium; background: none; border: none; color: white; font-family: 'Montserrat', sans-serif">Logout</button>
+                </form>
+            </div>
+            <div sec:authorize="!isAuthenticated()">
+                <a href="/login" style="text-decoration: none; color: white; margin-right: 10px">Login</a>
+                <a href="/register" style="text-decoration: none; color: white">Register</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div th:fragment="footer">
+    <div class="footer">
+        <div>
+            <div style="font-weight: bolder; font-size: large">H-manage+</div>
+            <div style="font-size: 12px; padding-top: 10px">
+                A Complete Hostel Management App <br>
+                Project Made for CSO-361 DBMS Course
+            </div>
+        </div>
+        <div>
+            <div style="text-align: right; ">Contributors</div>
+            <div style="font-size: 12px; text-align: right">
+                Sangam Kumar <br>
+                Kuldeep Rai <br>
+                Soumyadeep Das <br>
+            </div>
+        </div>
+    </div>
+</div>
